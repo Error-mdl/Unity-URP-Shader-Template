@@ -62,11 +62,11 @@ Shader "Basis/Base PBR"
             // Allow PC to use relaxed precision floats (half will be defined as min16float instead of float)
             #define UNITY_UNIFIED_SHADER_PRECISION_MODEL
 
-            // Enable the DXC shader compiler whenever possible. 
-            #include_with_pragmas "DXCSupport.hlsl"
-
             // Uncomment to use DXC with D3D12, but this will make the shader unable to compile for D3D11!
             //#define USE_DXC_D3D12_AND_BREAK_D3D11
+
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
 
             // Fix OOB instance property cbuffer index with DXC and android
             #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
