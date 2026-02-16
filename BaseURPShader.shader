@@ -60,18 +60,10 @@ Shader "Basis/Base PBR"
         HLSLINCLUDE
 
             // Allow PC to use relaxed precision floats (half will be defined as min16float instead of float)
-            #define UNITY_UNIFIED_SHADER_PRECISION_MODEL
+            #define UNITY_UNIFIED_SHADER_PRECISION_MODEL 1
 
             // Uncomment to use DXC with D3D12, but this will make the shader unable to compile for D3D11!
             //#define USE_DXC_D3D12_AND_BREAK_D3D11
-
-            // Enable the DXC shader compiler whenever possible. 
-            #include_with_pragmas "DXCSupport.hlsl"
-
-            // Fix OOB instance property cbuffer index with DXC and android
-            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
-            #pragma instancing_options maxcount:128 forcemaxcount:128
-            #endif
 
             // With depth-priming on D3D, NVidia experiences slight inconsistencies between 
             // the depth calculated in the forward pass and depth prepass if a different 
@@ -111,6 +103,13 @@ Shader "Basis/Base PBR"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
 
             ///----------------------------
             /// Default Lit Variants Config
@@ -362,6 +361,15 @@ Shader "Basis/Base PBR"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             struct VertexData
@@ -424,6 +432,15 @@ Shader "Basis/Base PBR"
             #pragma multi_compile_instancing
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             struct VertexData
@@ -519,6 +536,15 @@ Shader "Basis/Base PBR"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DOTS.hlsl"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"
 
@@ -593,6 +619,15 @@ Shader "Basis/Base PBR"
             #pragma shader_feature EDITOR_VISUALIZATION
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
+
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/MetaInput.hlsl"
 
             struct VertexData
@@ -673,6 +708,15 @@ Shader "Basis/Base PBR"
             #include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
             #define SHADERPASS SHADERPASS_MOTION_VECTORS
 
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
+
             #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
 
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ObjectMotionVectors.hlsl"
@@ -697,6 +741,15 @@ Shader "Basis/Base PBR"
 
             #include "Packages/com.unity.render-pipelines.universal/Editor/ShaderGraph/Includes/ShaderPass.hlsl"
             #define SHADERPASS SHADERPASS_XR_MOTION_VECTORS
+
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            // Enable the DXC shader compiler whenever possible. 
+            #include_with_pragmas "DXCSupport.hlsl"
+
+            // Fix OOB instance property cbuffer index with DXC and android
+            #if defined(NEEDS_FORCE_MAX_INSTANCE_COUNT)
+            #pragma instancing_options maxcount:128 forcemaxcount:128
+            #endif
 
             #pragma shader_feature_local_vertex _ADD_PRECOMPUTED_VELOCITY
             #define APPLICATION_SPACE_WARP_MOTION 1

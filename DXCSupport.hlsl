@@ -59,6 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef BASIS_DXC_SUPPORT
 #define BASIS_DXC_SUPPORT
 
+
 #pragma use_dxc vulkan
 
 // Can't bypass lack of shader model 6.5 to use SV_ViewID like with vulkan, and I can't test metal
@@ -72,16 +73,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #pragma use_dxc d3d11
 #endif
 
+#if !defined(UNITY_INSTANCING_INCLUDED)
+        #error DXCSupport.hlsl must be included after UnityInstancing.hlsl (included in Core.hlsl)
+#endif
+
 // Hack to make multiview stereo work with DXC and vulkan. The default FXC->hlslCC->GLSL
 // chain replaces references to a cbuffer constant with the multiview stereo
 // eye index glsl builtin. DXC can express the eye index with SV_ViewID, but
 // it's only available in shader model 6.5 which unity doesn't let us use.
 // However, DXC does let us inject raw SPIR-V...
 #if defined(STEREO_MULTIVIEW_ON) && defined(UNITY_COMPILER_DXC) && defined(unity_StereoEyeIndex)
-
-    #if !defined(UNITY_INSTANCING_INCLUDED)
-            #error DXCSupport.hlsl must be included after UnityInstancing.hlsl (included in Core.hlsl)
-    #endif
 
     // in the vertex, unity_StereoEyeIndex is defined to the magic constant buffer value gl_viewID that hlslcc swaps for the gl_viewID_OVR builtin
     #undef unity_StereoEyeIndex
